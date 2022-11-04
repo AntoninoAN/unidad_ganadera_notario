@@ -1,2 +1,3 @@
 rootProject.name = "unidad_ganadera_notario"
 include ':app'
+include ':module_data'
