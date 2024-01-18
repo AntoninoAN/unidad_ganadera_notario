@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "124958687298",
+    "project_id": "unidad-ganadera-notario",
+    "storage_bucket": "unidad-ganadera-notario.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124958687298:android:9e1a1f6f516497cf772ddb",
+        "android_client_info": {
+          "package_name": "com.unidad.ganadera.notario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124958687298-a0q8qg19m4ld83d7rb2f22t570d35v2g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unidad.ganadera.notario",
+            "certificate_hash": "5a2f8d6610a5583429cf1f9f0b36f71094987a3e"
+          }
+        },
+        {
+          "client_id": "124958687298-1narjqutnesr51kmb4fhk03o6p5npsma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3HMgfamOvaX7rq1U_HQc5C5TVlB53_OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124958687298-1narjqutnesr51kmb4fhk03o6p5npsma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
