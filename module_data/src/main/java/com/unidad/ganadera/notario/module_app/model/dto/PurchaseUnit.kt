@@ -1,4 +1,4 @@
-package com.unidad.ganadera.notario.module_app.remote.dto
+package com.unidad.ganadera.notario.module_app.model.dto
 
 data class PurchaseUnit(
     val apodo: String,

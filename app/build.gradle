@@ -15,6 +15,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -33,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':module_data')
 
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

@@ -60,6 +60,11 @@ class ReadContractImpl(/*private val readDomain: ReadDomain*/): ReadContract {
         TODO("Not yet implemented")
     }
 
+    /**
+     * So far we have hardcoded one unidad ganadera
+     * Ideally from login, we will have to obtain the global params
+     * to query directly to the specific Collection Reference.
+     */
     enum class ReadActions(var actions: String){
         GET_ALL_COWS("/unidad_ganadera_notario/unidad_sonia/ganados")
     }
