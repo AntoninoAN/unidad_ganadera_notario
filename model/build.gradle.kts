@@ -51,7 +51,7 @@ dependencies {
     // Room Coroutines
     implementation("androidx.room:room-ktx:2.6.1")
     // Hilt Core
-    implementation("com.google.dagger:hilt-android:2.44")
+    api("com.google.dagger:hilt-android:2.44")
     // Hilt Annotation Processor
     ksp("com.google.dagger:hilt-android-compiler:2.44")
 }
