@@ -45,4 +45,12 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getSchoolByDBN(schoolID: String): List<SchoolSat> {
+        try {
+            return dao.getSchoolByDBN(schoolID).ifEmpty { throw SchoolLocalExceptions(Exception("No results")) }
+        } catch (ex: Exception) {
+            throw SchoolLocalExceptions(ex)
+        }
+    }
+
 }

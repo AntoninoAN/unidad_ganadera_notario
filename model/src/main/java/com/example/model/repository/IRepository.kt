@@ -9,4 +9,5 @@ interface IRepository {
     suspend fun getAllSchoolsSatFromRemote(): List<SchoolListSATDTO>
     suspend fun getAllSchoolsWithSat(): List<SchoolSat>
     suspend fun insertSchoolsWithSat(schoolWithSat: SchoolSat)
+    suspend fun getSchoolByDBN(schoolID: String): List<SchoolSat>
 }

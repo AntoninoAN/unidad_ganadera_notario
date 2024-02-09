@@ -13,4 +13,7 @@ interface SchoolDAO {
 
     @Insert(entity = SchoolSat::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllSchoolsWithSat(newSchoolWithSat: SchoolSat)
+
+    @Query(value = "SELECT * FROM schools_sat WHERE schoolID LIKE :schoolDBN")
+    suspend fun getSchoolByDBN(schoolDBN: String): List<SchoolSat>
 }
