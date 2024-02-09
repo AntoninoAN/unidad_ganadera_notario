@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "20240205-AntoninoArdines-NYCSchools"
 include(":app")
 include(":model")
+include(":domain")
