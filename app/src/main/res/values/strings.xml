@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">20240205-AntoninoArdines-NYCSchools</string>
+    <string name="school_name">School name: %1$s</string>
+    <string name="school_website">Website: %1$s</string>
 </resources>
