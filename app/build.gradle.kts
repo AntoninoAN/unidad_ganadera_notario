@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,7 +53,7 @@ android {
 
 dependencies {
 
-
+    implementation(project(":domain"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -68,4 +70,13 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // ViewModel KTX
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    // LiveData Compose KTX
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.1")
+    // Hilt Annotation Processor
+    ksp("com.google.dagger:hilt-android-compiler:2.48.1")
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.48.1")
 }
