@@ -70,7 +70,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
     // ViewModel KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     // LiveData Compose KTX
@@ -79,4 +78,8 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:2.48.1")
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
+    // Compose Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    // Hilt Navigation
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 }

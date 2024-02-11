@@ -50,9 +50,8 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
     // Room Coroutines
     implementation("androidx.room:room-ktx:2.6.1")
-
-
-
+    // Moshi-Kotlin
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     // Hilt Core
     implementation("com.google.dagger:hilt-android:2.48.1")
     // Hilt Annotation Processor

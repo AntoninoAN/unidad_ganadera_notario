@@ -9,16 +9,16 @@ internal fun SchoolListDTO.schoolWithSatAggregate(
     schoolSatDTO:SchoolListSATDTO
 ): SchoolSat {
     return SchoolSat(
-        schoolID,
-        schoolName,
-        schoolSatDTO.satTestTakers,
-        schoolSatDTO.satCriticalReading,
-        schoolSatDTO.satMath,
-        schoolSatDTO.satWriting,
-        overview,
-        phoneNumber,
-        website,
-        schoolEmail
+        schoolID ?: "",
+        schoolName ?: "",
+        schoolSatDTO.satTestTakers ?: "",
+        schoolSatDTO.satCriticalReading ?: "",
+        schoolSatDTO.satMath ?: "",
+        schoolSatDTO.satWriting ?: "",
+        overview ?: "",
+        phoneNumber ?: "",
+        website ?: "",
+        schoolEmail ?: ""
     )
 }
 

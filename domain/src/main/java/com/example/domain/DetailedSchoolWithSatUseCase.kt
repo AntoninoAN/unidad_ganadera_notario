@@ -3,7 +3,6 @@ package com.example.domain
 import com.example.domain.common.mapToDomainSchoolSat
 import com.example.domain.data.DomainSchoolSat
 import com.example.domain.data.UIState
-import com.example.model.data.SchoolSat
 import com.example.model.exceptions.SchoolExceptions
 import com.example.model.repository.IRepository
 import kotlinx.coroutines.flow.Flow
