@@ -8,20 +8,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.a20240205_antoninoardines_nycschools.viewmodel.SchoolDetailsViewModel
 import com.example.domain.data.DomainSchoolSat
 import com.example.domain.data.UIState
 
 @Composable
-fun DetailSchoolScreen(schoolID: String) {
-    val detailedSchoolVM: SchoolDetailsViewModel = viewModel()
-    detailedSchoolVM.schoolIDState.value = schoolID
+fun DetailSchoolScreen(schoolID: String, detailedSchoolVM: SchoolDetailsViewModel) {
+    detailedSchoolVM.detailSchoolSelection.value = schoolID
     detailedSchoolVM.detailSchoolState.observeAsState().value?.let {
         when (val state = it) {
             is UIState.Success<List<DomainSchoolSat>> -> { DetailSchool(state.data.first())}

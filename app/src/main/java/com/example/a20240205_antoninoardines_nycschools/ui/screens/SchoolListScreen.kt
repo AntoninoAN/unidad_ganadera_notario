@@ -1,5 +1,6 @@
 package com.example.a20240205_antoninoardines_nycschools.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.a20240205_antoninoardines_nycschools.R
 import com.example.a20240205_antoninoardines_nycschools.viewmodel.SchoolListViewModel
 import com.example.domain.data.DomainSchoolSat
@@ -23,7 +24,7 @@ import com.example.domain.data.UIState
 
 @Composable
 fun SchoolListScreen(openDetails: (String) -> Unit) {
-    val schoolListVM: SchoolListViewModel = viewModel()
+    val schoolListVM: SchoolListViewModel = hiltViewModel()
 
     schoolListVM.schoolListState.observeAsState().value?.let {
         when (val state = it) {
@@ -34,31 +35,32 @@ fun SchoolListScreen(openDetails: (String) -> Unit) {
                 SchoolLoadingController(state.loading)
             }
             is UIState.Success<List<DomainSchoolSat>> -> {
-                SchoolList(state.data)
+                SchoolList(state.data, openDetails)
             }
         }
     }
 }
 
 @Composable
-fun SchoolList(data: List<DomainSchoolSat>) {
+fun SchoolList(data: List<DomainSchoolSat>, openDetails: (String) -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
     ) {
         items(items = data) {
-            SchoolItem(it)
+            SchoolItem(it, openDetails)
         }
     }
 }
 
 @Composable
-fun SchoolItem(domainSchoolSat: DomainSchoolSat) {
+fun SchoolItem(domainSchoolSat: DomainSchoolSat, openDetails: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxSize()
             .padding(4.dp)
+            .clickable { openDetails(domainSchoolSat.schoolID) }
     ) {
         Column {
             Text(
@@ -81,7 +83,7 @@ fun SchoolItem(domainSchoolSat: DomainSchoolSat) {
 @Composable
 fun PrevSchoolItem() {
     MainAppComposable {
-        SchoolItem(domainSchoolSat = schoolSatGenerator().first())
+        SchoolItem(domainSchoolSat = schoolSatGenerator().first()) {}
     }
 }
 
@@ -89,6 +91,6 @@ fun PrevSchoolItem() {
 @Composable
 fun PrevSchoolList() {
     MainAppComposable {
-        SchoolList(schoolSatGenerator())
+        SchoolList(schoolSatGenerator()) {}
     }
 }

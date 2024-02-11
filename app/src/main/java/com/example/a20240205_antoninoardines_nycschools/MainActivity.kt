@@ -1,26 +1,21 @@
 package com.example.a20240205_antoninoardines_nycschools
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.a20240205_antoninoardines_nycschools.common.Navigation
+import com.example.a20240205_antoninoardines_nycschools.ui.screens.DetailSchoolScreen
 import com.example.a20240205_antoninoardines_nycschools.ui.screens.MainAppComposable
 import com.example.a20240205_antoninoardines_nycschools.ui.screens.SchoolListScreen
-import com.example.a20240205_antoninoardines_nycschools.ui.theme._20240205AntoninoArdinesNYCSchoolsTheme
-import com.example.a20240205_antoninoardines_nycschools.viewmodel.SchoolListViewModel
+import com.example.a20240205_antoninoardines_nycschools.viewmodel.SchoolDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -28,9 +23,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MainAppComposable {
-                val context = LocalContext.current
-                SchoolListScreen {
-                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = Navigation.SCHOOL_HOME_NAV
+                ) {
+                    composable(route = Navigation.SCHOOL_HOME_NAV) {
+                        SchoolListScreen { schoolID ->
+                            navController.navigate("${Navigation.SCHOOL_DETAIL_NAV}/$schoolID")
+                        }
+                    }
+                    composable(route = Navigation.SCHOOL_DETAIL_PATH,
+                        arguments = listOf(
+                            navArgument(Navigation.SCHOOL_DETAIL_ARG) {
+                                type = NavType.StringType
+                            }
+                        )
+                    ) {
+                        DetailSchoolScreen(
+                            schoolID = it.arguments?.getString(Navigation.SCHOOL_DETAIL_ARG) ?: throw Exception("Incorrect School ID"),
+                            hiltViewModel<SchoolDetailsViewModel>()
+                        )
+                    }
                 }
             }
         }
