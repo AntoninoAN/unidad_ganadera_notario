@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace = "com.unidad.ganadera.notario.module_app"
     compileSdk 32
 
     defaultConfig {
