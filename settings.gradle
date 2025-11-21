@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google() // Ensure this is present
+        mavenCentral()
+    }
+}
+
 rootProject.name = "unidad_ganadera_notario"
 include ':app'
 include ':module_data'
