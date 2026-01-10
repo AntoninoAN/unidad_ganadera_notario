@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -30,6 +31,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
 }
 
 dependencies {
@@ -40,4 +46,8 @@ dependencies {
     implementation platform(libs.firebase.bom)
     // Firestore
     implementation libs.firebase.firestore.ktx
+    // Room
+    implementation libs.room.runtime
+    implementation libs.room.ktx
+    kapt libs.room.compiler
 }
