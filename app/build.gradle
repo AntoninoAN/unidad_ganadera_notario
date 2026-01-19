@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -47,4 +49,6 @@ dependencies {
     androidTestImplementation(libs.espressso.core)
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlin.version)
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
 }
