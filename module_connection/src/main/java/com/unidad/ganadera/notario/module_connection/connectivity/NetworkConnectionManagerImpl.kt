@@ -1,10 +1,12 @@
-package com.unidad.ganadera.notario.module_connection
+package com.unidad.ganadera.notario.module_connection.connectiviy
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.os.Build
+import com.unidad.ganadera.notario.module_connection.utils.verifyOSDeviceVersion
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -20,10 +22,21 @@ class NetworkConnectionManagerImpl @Inject constructor(
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     override fun isOnline(): Boolean {
-        val network = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+        if (verifyOSDeviceVersion(Build.VERSION_CODES.M)) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected && networkInfo.isAvailable
+        }
+    }
+
+    override fun isMetered(): Boolean {
+        return connectivityManager.isActiveNetworkMetered
     }
 
     override fun observeConnection(): Flow<ConnectionState> = callbackFlow {
