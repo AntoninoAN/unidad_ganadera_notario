@@ -1,4 +1,4 @@
-package com.unidad.ganadera.notario.module_connection.connectiviy
+package com.unidad.ganadera.notario.module_connection.connectivity
 
 import kotlinx.coroutines.flow.Flow
 

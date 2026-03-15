@@ -1,4 +1,4 @@
-package com.unidad.ganadera.notario.module_connection.connectiviy
+package com.unidad.ganadera.notario.module_connection.connectivity
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class NetworkConnectionManagerImpl @Inject constructor(
-    private val context: Context
+    context: Context
 ) : ConnectionManager {
 
     private val connectivityManager =
